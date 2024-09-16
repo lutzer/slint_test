@@ -1,0 +1,31 @@
+import { Button, VerticalBox } from "std-widgets.slint";
+import { AppGlobals } from "globals.slint";
+
+export component Counter inherits VerticalLayout {
+    in property <int> value;
+
+    opacity: AppGlobals.state.counter_opacity;
+
+    animate opacity {
+        duration: 1000ms;
+        easing: ease-in-out;
+    }
+    
+    Text {
+        text: "Counter: \{root.value}";
+    }
+
+    Button {
+        text: "Increase value";
+        clicked => {
+            AppGlobals.increase-clicked();
+        }
+    }
+
+    Button {
+        text: "Decrease value";
+        clicked => {
+            AppGlobals.decrease-clicked();
+        }
+    }
+}

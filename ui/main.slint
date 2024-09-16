@@ -1,0 +1,31 @@
+import { Counter } from "counter.slint";
+import { AppGlobals, AppState } from "globals.slint";
+import { Button } from "std-widgets.slint";
+
+export { AppGlobals }
+export { AppState }
+
+export component App inherits Window {
+
+    VerticalLayout {
+
+        padding: 20px;
+
+        Text {
+            text: "This tutorial shows you how to use the languages that Slint supports as the host programming language.";
+        }
+
+        Text {
+            text: "We recommend using our editor integrations for Slint for following this tutorial.";
+        }
+
+        counter := Counter { 
+            value: AppGlobals.state.counter;
+        }
+
+        Button {
+            text: "Fade";
+            clicked => { AppGlobals.fade-clicked() }
+        }
+    }
+}

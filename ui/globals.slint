@@ -1,0 +1,14 @@
+@rust-attr(derive(serde::Serialize, serde::Deserialize))
+export struct AppState {
+    counter : int,
+    counter_opacity: float
+}
+
+export global AppGlobals {
+    in-out property <AppState> state;
+    
+    callback increase-clicked();
+    callback decrease-clicked();
+
+    callback fade-clicked();
+}
