@@ -25,6 +25,10 @@ Rust code, how to react to callbacks, get and set properties, and use basic widg
     ```
     cargo run
     ```
+5. Hot relading with:
+    ```
+    cargo watch -x run
+    ```
 
 We recommend using an IDE for development, along with our [LSP-based IDE integration for `.slint` files](https://github.com/slint-ui/slint/blob/master/tools/lsp/README.md). You can also load this project directly in [Visual Studio Code](https://code.visualstudio.com) and install our [Slint extension](https://marketplace.visualstudio.com/items?itemName=Slint.slint).
 
