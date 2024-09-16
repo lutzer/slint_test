@@ -44,37 +44,45 @@ fn main() {
     app.global::<AppGlobals>().on_increase_clicked({
         let app_weak = app.as_weak();
         move || {
-            let mut state = app_weak.unwrap().get_state();
-            state.counter += 1;
-            app_weak.unwrap().set_state(state);
-            app_weak.unwrap().save(SETTINGS_PATH);
+            if let Some(app) = app_weak.upgrade() {
+                let mut state = app.get_state();
+                state.counter += 1;
+                app.set_state(state);
+                app.save(SETTINGS_PATH);
+            }
         }
     });
 
     app.global::<AppGlobals>().on_decrease_clicked({
         let app_weak = app.as_weak();
         move || {
-            let mut state = app_weak.unwrap().get_state();
-            state.counter -= 1;
-            app_weak.unwrap().set_state(state);
-            app_weak.unwrap().save(SETTINGS_PATH);
+            if let Some(app) = app_weak.upgrade() {
+                let mut state = app.get_state();
+                state.counter -= 1;
+                app.set_state(state);
+                app.save(SETTINGS_PATH);
+            }
         }
     });
 
     app.global::<AppGlobals>().on_fade_clicked({
         let app_weak = app.as_weak();
         move || {
-            let mut state = app_weak.unwrap().get_state();
-            state.counter_opacity = if state.counter_opacity > 0.0 {0.0} else {1.0};
-            app_weak.unwrap().set_state(state);
-            app_weak.unwrap().save(SETTINGS_PATH);
+            if let Some(app) = app_weak.upgrade() {
+                let mut state = app.get_state();
+                state.counter_opacity = if state.counter_opacity > 0.0 {0.0} else {1.0};
+                app.set_state(state);
+                app.save(SETTINGS_PATH);
+            }
         }
     });
 
     app.window().on_close_requested({
         let app_weak = app.as_weak();
         move || {
-            app_weak.unwrap().save(SETTINGS_PATH);
+            if let Some(app) = app_weak.upgrade() {
+                app.save(SETTINGS_PATH);
+            }
             return CloseRequestResponse::HideWindow;
         }
     });

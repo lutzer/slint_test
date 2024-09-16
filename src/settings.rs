@@ -1,9 +1,10 @@
 use std::{fs::File, io::{Error, Read, Write}};
 
 use serde::{Deserialize, Serialize};
-use ui::AppState;
 
 use crate::ui;
+use ui::AppState;
+
 
 #[derive(Serialize, Deserialize)]
 pub struct Settings {
